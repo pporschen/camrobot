@@ -1,43 +1,6 @@
 import { useState, useRef } from "react";
-
-import styled from "styled-components";
-
-// Define styled components for styling
-const WebcamContainer = styled.div`
-	position: relative;
-	width: 100%;
-	margin: 0 auto;
-	height: 100%;
-`;
-
-const WebcamVideo = styled.video`
-	width: 100%;
-	border-radius: 10px;
-`;
-
-const PreviewImg = styled.img`
-	width: 100%;
-	border-radius: 10px;
-`;
-
-const WebcamCanvas = styled.canvas`
-	display: none; /* Hide canvas by default */
-`;
-
-const WebcamButton = styled.button`
-	position: absolute;
-	bottom: 20px;
-	left: 50%;
-	transform: translateX(-50%);
-	background-color: #fff;
-	color: #333;
-	border: none;
-	border-radius: 20px;
-	padding: 10px 20px;
-	font-size: 16px;
-	cursor: pointer;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-`;
+import { Box, Button } from "@mui/material";
+import BigButton from "./Buttons/BigButton";
 
 const WebcamCapture = () => {
 	const videoRef = useRef<HTMLVideoElement>(null);
@@ -60,7 +23,6 @@ const WebcamCapture = () => {
 		}
 	};
 
-	// Function to stop the webcam
 	const stopWebcam = () => {
 		if (mediaStream) {
 			mediaStream.getTracks().forEach((track) => {
@@ -76,53 +38,71 @@ const WebcamCapture = () => {
 			const canvas = canvasRef.current;
 			const context = canvas.getContext("2d");
 
-			// Set canvas dimensions to match video stream
 			if (context && video.videoWidth && video.videoHeight) {
 				canvas.width = video.videoWidth;
 				canvas.height = video.videoHeight;
 
-				// Draw video frame onto canvas
 				context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-				// Get image data URL from canvas
 				const imageDataUrl = canvas.toDataURL("image/jpeg");
-
-				// Set the captured image
 				setCapturedImage(imageDataUrl);
-
-				// Stop the webcam
 				stopWebcam();
-
-				// You can do something with the captured image here, like save it to state or send it to a server
 			}
 		}
 	};
 
-	// Function to reset state (clear media stream and refs)
 	const resetState = () => {
-		stopWebcam(); // Stop the webcam if it's active
-		setCapturedImage(null); // Reset captured image
+		stopWebcam();
+		setCapturedImage(null);
 	};
 
 	return (
-		<WebcamContainer>
+		<Box
+			sx={{
+				position: "relative",
+				width: "100%",
+				height: "100%",
+				display: "flex",
+				justifyContent: "center",
+				alignItems: "center",
+				backgroundColor: "#000",
+			}}
+		>
 			{capturedImage ? (
 				<>
-					<PreviewImg src={capturedImage} className="captured-image" />
-					<WebcamButton onClick={resetState}>Reset</WebcamButton>
+					<Box component="img" src={capturedImage} alt="Captured" sx={{ width: "100%", borderRadius: 2 }} />
+					<Button variant="contained" color="primary" onClick={resetState} sx={{ position: "absolute", bottom: 20 }}>
+						Reset
+					</Button>
 				</>
 			) : (
 				<>
-					<WebcamVideo ref={videoRef} autoPlay muted />
-					<WebcamCanvas ref={canvasRef} />
-					{!videoRef.current ? (
-						<WebcamButton onClick={startWebcam}>Start Webcam</WebcamButton>
-					) : (
-						<WebcamButton onClick={captureImage}>Capture Image</WebcamButton>
-					)}
+					<Box
+						component="video"
+						ref={videoRef}
+						autoPlay
+						muted
+						sx={{
+							width: "100%",
+							height: "100%",
+							objectFit: "cover",
+							borderRadius: 2,
+						}}
+					/>
+					<canvas ref={canvasRef} style={{ display: "none" }} />
+					<BigButton
+						onClick={mediaStream ? captureImage : startWebcam}
+						label={mediaStream ? "Capture Image" : "Start Webcam"}
+						style={{
+							position: "absolute",
+							bottom: 20,
+							left: "50%",
+							transform: "translateX(-50%)",
+						}}
+					/>
 				</>
 			)}
-		</WebcamContainer>
+		</Box>
 	);
 };
 
