@@ -1,5 +1,6 @@
 import React from "react";
 import WebcamCapture from "./components/WebcamCapture";
+import ButtonPanelRight from "./components/Buttons/ButtonPanelRight";
 
 function App() {
 	return (
@@ -12,6 +13,7 @@ function App() {
 			}}
 		>
 			<WebcamCapture />
+			<ButtonPanelRight />
 		</div>
 	);
 }
