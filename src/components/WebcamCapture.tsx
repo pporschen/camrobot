@@ -6,8 +6,8 @@ import styled from "styled-components";
 const WebcamContainer = styled.div`
 	position: relative;
 	width: 100%;
-	max-width: 400px;
 	margin: 0 auto;
+	height: 100%;
 `;
 
 const WebcamVideo = styled.video`
