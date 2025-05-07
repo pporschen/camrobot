@@ -1,6 +1,7 @@
 import React from "react";
 import WebcamCapture from "./components/WebcamCapture";
 import ButtonPanelRight from "./components/Buttons/ButtonPanelRight";
+import ButtonPanelLeft from "./components/Buttons/ButtonPanelLeft";
 
 function App() {
 	return (
@@ -12,6 +13,7 @@ function App() {
 				overflow: "hidden", // Prevents scrollbars
 			}}
 		>
+			<ButtonPanelLeft />
 			<WebcamCapture />
 			<ButtonPanelRight />
 		</div>
