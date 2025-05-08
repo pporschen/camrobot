@@ -7,6 +7,7 @@ import { CSSProperties } from "react";
 import { Preset } from "../../services/localStorage";
 import PresetModal from "../PresetModal";
 import useArmState from "../../hooks/useArmState";
+import moveArmToCoords from "../../utils/moveArm";
 
 const wrapperStyle: CSSProperties = {
 	position: "absolute",
@@ -44,7 +45,7 @@ const ButtonPanelRight = () => {
 					key={preset.name}
 					label={preset.name}
 					onClick={() => {
-						console.log("Clicked preset:", preset.name);
+						moveArmToCoords(preset.coordinates);
 					}}
 				/>
 			))}
