@@ -26,7 +26,8 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   background-color: #fff;
-  color: #000;
+  color: #fff;
+  font-size: 1.5rem;
 }
 
 img,

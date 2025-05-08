@@ -1,5 +1,4 @@
 import AxisControls from "./AxisControls";
-import BigButton from "./BigButton";
 
 import { CSSProperties } from "react";
 
@@ -11,7 +10,6 @@ const wrapperStyle: CSSProperties = {
 	flexDirection: "column",
 	gap: "1.5rem",
 	zIndex: 1000, // Ensure it is on top of other elements
-	color: "#fff",
 };
 
 const ButtonPanelLeft = () => {
