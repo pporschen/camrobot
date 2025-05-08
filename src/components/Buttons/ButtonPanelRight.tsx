@@ -14,6 +14,7 @@ const wrapperStyle: CSSProperties = {
 const ButtonPanelRight = () => {
 	return (
 		<div style={wrapperStyle}>
+			<h1>Presets</h1>
 			<BigButton
 				label="Start Webcam"
 				onClick={() => {
