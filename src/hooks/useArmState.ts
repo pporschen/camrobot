@@ -9,9 +9,9 @@ export type ArmState = {
 
 const GET_STATE_COMMAND = { T: 105 };
 
-const useArmState = () => {
+const useArmState = (condition: boolean) => {
 	const [armState, setArmState] = useState<ArmState | null>(null);
-	const coords = armState ? [armState.x, armState.y, armState.z] : [];
+	const coords = armState ? { x: armState.x, y: armState.y, z: armState.z } : { x: 0, y: 0, z: 0 };
 
 	const queryParams = encodeURIComponent(JSON.stringify(GET_STATE_COMMAND));
 
@@ -35,7 +35,7 @@ const useArmState = () => {
 		};
 
 		fetchArmState();
-	}, [queryParams]);
+	}, [queryParams, condition]);
 
 	return { armState, currentCoords: coords };
 };

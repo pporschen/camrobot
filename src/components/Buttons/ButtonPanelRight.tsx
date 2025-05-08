@@ -33,7 +33,7 @@ const fabStyle: CSSProperties = {
 const ButtonPanelRight = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const presets = JSON.parse(localStorage.getItem("presets") || "[]");
-	const { currentCoords } = useArmState();
+	const { currentCoords } = useArmState(isModalOpen);
 	console.log({ currentCoords });
 
 	return (
@@ -57,7 +57,7 @@ const ButtonPanelRight = () => {
 					<RemoveIcon />
 				</Fab>
 			</div>
-			<PresetModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+			<PresetModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} currentCoords={currentCoords} />
 		</div>
 	);
 };
