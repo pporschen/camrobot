@@ -1,3 +1,4 @@
+import AxisControls from "./AxisControls";
 import BigButton from "./BigButton";
 
 import { CSSProperties } from "react";
@@ -10,31 +11,28 @@ const wrapperStyle: CSSProperties = {
 	flexDirection: "column",
 	gap: "1.5rem",
 	zIndex: 1000, // Ensure it is on top of other elements
+	color: "#fff",
 };
 
 const ButtonPanelLeft = () => {
 	return (
 		<div style={wrapperStyle}>
-			<BigButton
-				label="Start Webcam"
-				onClick={() => {
-					// Logic to start webcam
-					console.log("Webcam started");
-				}}
+			<h1>Controls</h1>
+
+			<AxisControls
+				axisName="X Axis"
+				plusHandler={() => console.log("X Axis +")}
+				minusHandler={() => console.log("X Axis -")}
 			/>
-			<BigButton
-				label="Capture Image"
-				onClick={() => {
-					// Logic to capture image
-					console.log("Image captured");
-				}}
+			<AxisControls
+				axisName="Y Axis"
+				plusHandler={() => console.log("Y Axis +")}
+				minusHandler={() => console.log("Y Axis -")}
 			/>
-			<BigButton
-				label="Reset"
-				onClick={() => {
-					// Logic to reset state
-					console.log("State reset");
-				}}
+			<AxisControls
+				axisName="Z Axis"
+				plusHandler={() => console.log("Z Axis +")}
+				minusHandler={() => console.log("Z Axis -")}
 			/>
 		</div>
 	);
