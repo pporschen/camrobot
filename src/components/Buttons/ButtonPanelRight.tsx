@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import BigButton from "./BigButton";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { Fab, Modal, Box, TextField, Button } from "@mui/material";
+import { Fab } from "@mui/material";
 import { CSSProperties } from "react";
 import { Preset } from "../../services/localStorage";
 import PresetModal from "../PresetModal";
@@ -38,6 +38,7 @@ const ButtonPanelRight = () => {
 			<h1>Presets</h1>
 			{presets.map((preset: Preset) => (
 				<BigButton
+					key={preset.name}
 					label={preset.name}
 					onClick={() => {
 						console.log("Clicked preset:", preset.name);
