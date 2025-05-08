@@ -91,8 +91,8 @@ const WebcamCapture = () => {
 					/>
 					<canvas ref={canvasRef} style={{ display: "none" }} />
 					<BigButton
-						onClick={mediaStream ? captureImage : startWebcam}
-						label={mediaStream ? "Capture Image" : "Start Webcam"}
+						onClick={mediaStream ? resetState : startWebcam}
+						label={mediaStream ? "Stop Webcam" : "Start Webcam"}
 						style={{
 							position: "absolute",
 							bottom: 20,

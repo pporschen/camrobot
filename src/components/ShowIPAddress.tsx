@@ -8,7 +8,13 @@ const wrapperStyle: CSSProperties = {
 };
 
 const ShowIpAddress = () => {
-	return <div style={wrapperStyle}>{RO_ARM_IP}</div>;
+	return (
+		<div style={wrapperStyle}>
+			<a href={`http://${RO_ARM_IP}`} target="_blank" rel="noopener noreferrer">
+				{RO_ARM_IP}
+			</a>
+		</div>
+	);
 };
 
 export default ShowIpAddress;
