@@ -6,6 +6,7 @@ import { Fab } from "@mui/material";
 import { CSSProperties } from "react";
 import { Preset } from "../../services/localStorage";
 import PresetModal from "../PresetModal";
+import useArmState from "../../hooks/useArmState";
 
 const wrapperStyle: CSSProperties = {
 	position: "absolute",
@@ -32,6 +33,8 @@ const fabStyle: CSSProperties = {
 const ButtonPanelRight = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const presets = JSON.parse(localStorage.getItem("presets") || "[]");
+	const { currentCoords } = useArmState();
+	console.log({ currentCoords });
 
 	return (
 		<div style={wrapperStyle}>
