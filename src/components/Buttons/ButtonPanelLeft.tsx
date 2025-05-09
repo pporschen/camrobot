@@ -1,7 +1,9 @@
 import AxisControls from "./AxisControls";
 
 import { CSSProperties } from "react";
+import armUtils from "../../utils/moveArm";
 
+const { AXIS, CMD, moveAxis } = armUtils;
 const wrapperStyle: CSSProperties = {
 	position: "absolute",
 	left: 20,
@@ -9,7 +11,7 @@ const wrapperStyle: CSSProperties = {
 	display: "flex",
 	flexDirection: "column",
 	gap: "1.5rem",
-	zIndex: 1000, // Ensure it is on top of other elements
+	zIndex: 1000,
 };
 
 const ButtonPanelLeft = () => {
@@ -18,19 +20,19 @@ const ButtonPanelLeft = () => {
 			<h1>Controls</h1>
 
 			<AxisControls
-				axisName="X Axis"
-				plusHandler={() => console.log("X Axis +")}
-				minusHandler={() => console.log("X Axis -")}
+				axisName="X-Axis"
+				plusHandler={() => moveAxis(AXIS.X, CMD.INCREASE)}
+				minusHandler={() => moveAxis(AXIS.X, CMD.DECREASE)}
 			/>
 			<AxisControls
-				axisName="Y Axis"
-				plusHandler={() => console.log("Y Axis +")}
-				minusHandler={() => console.log("Y Axis -")}
+				axisName="Y-Axis"
+				plusHandler={() => moveAxis(AXIS.Y, CMD.INCREASE)}
+				minusHandler={() => moveAxis(AXIS.Y, CMD.DECREASE)}
 			/>
 			<AxisControls
-				axisName="Z Axis"
-				plusHandler={() => console.log("Z Axis +")}
-				minusHandler={() => console.log("Z Axis -")}
+				axisName="Z-Axis"
+				plusHandler={() => moveAxis(AXIS.Z, CMD.INCREASE)}
+				minusHandler={() => moveAxis(AXIS.Z, CMD.DECREASE)}
 			/>
 		</div>
 	);

@@ -5,6 +5,12 @@ enum AXIS {
 	Z = 3,
 }
 
+enum CMD {
+	STOP = 0,
+	INCREASE = 1,
+	DECREASE = 2,
+}
+
 const moveArmToCoords = ({ x, y, z }: { x: number; y: number; z: number }) => {
 	const command = { T: 104, x, y, z, t: 3.14, spd: ARM_SPEED };
 	const queryParams = encodeURIComponent(JSON.stringify(command));
@@ -18,8 +24,8 @@ const moveArmToCoords = ({ x, y, z }: { x: number; y: number; z: number }) => {
 	});
 };
 
-const moveAxis = (axis: AXIS) => {
-	const command = { T: 123, m: 1, axis, cmd: 0, spd: ARM_SPEED };
+const moveAxis = (axis: AXIS, cmd: CMD) => {
+	const command = { T: 123, m: 1, axis, cmd, spd: ARM_SPEED };
 	const queryParams = encodeURIComponent(JSON.stringify(command));
 	const url = `/js?json=${queryParams}`;
 
@@ -31,5 +37,5 @@ const moveAxis = (axis: AXIS) => {
 	});
 };
 
-const moveArmUtils = { moveArmToCoords, moveAxis, AXIS };
+const moveArmUtils = { moveArmToCoords, moveAxis, AXIS, CMD };
 export default moveArmUtils;
